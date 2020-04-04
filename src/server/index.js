@@ -2,6 +2,11 @@ var path = require('path')
 const express = require('express')
 const mockAPIResponse = require('./mockAPI.js')
 
+// See: https://docs.aylien.com/textapi/sdks/#node-js-sdk
+// Install the SDK, cd into this folder and type in the command line: npm install aylien_textapi
+// Require the Aylien npm package:
+var aylien = require("aylien_textapi");
+
 const app = express()
 
 app.use(express.static('dist'))
