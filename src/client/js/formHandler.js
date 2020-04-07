@@ -13,4 +13,4 @@ function handleSubmit(event) {
     })
 }
 
-export { handleSubmit }
+export { handleSubmit } // export is what allows us to import the file within the index.js file
