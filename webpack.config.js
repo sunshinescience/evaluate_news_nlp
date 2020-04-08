@@ -4,6 +4,7 @@ const HtmlWebPackPlugin = require('html-webpack-plugin')
 
 // Add an entry as the starting point where webpack will begin to build our dependency tree from
 module.exports = {
+    mode: 'production',
     entry: './src/client/index.js',
     module: {
         rules: [ // We're using a rule in webpack, which goes under an array of rules
