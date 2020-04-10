@@ -5,4 +5,3 @@ import { handleSubmit } from './js/formHandler'
 
 alert("I DO EXIST");
 // console.log("CHANGE!!");
-alert("I EXIST");
