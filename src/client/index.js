@@ -9,7 +9,7 @@ import './styles/resets.scss'
 
 // console.log(checkForName);
 
-alert("I DO EXIST");
+alert("I DEFINITELY EXIST");
 // console.log("CHANGE!!");
 
 export {
