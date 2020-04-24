@@ -4,7 +4,6 @@
 var path = require('path') // Extract the filename from a file path
 const express = require('express')
 const mockAPIResponse = require('./mockAPI.js')
-var requestPost = require('../client/js/formHandler.js');
 
 //var bodyParser = require('body-parser');
 
@@ -49,9 +48,8 @@ app.listen(port, function () {
 
 console.log('try to start server');
 app.get('/test', function (req, res) {
-    console.log("test get calleddd");
-
-    //res.send(mockAPIResponse)
+    //console.log("test get calleddd");
+    res.send(mockAPIResponse)
 })
 
 // **************** Setup Express route ****************** 
@@ -61,6 +59,5 @@ app.get('/test', function (req, res) {
 app.post('/process', process);
 
 function process (req, res) { 
-    console.log('process called');
-    
+    console.log('process called');   
   };
