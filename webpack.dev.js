@@ -7,14 +7,10 @@ module.exports = {
     entry: './src/client/index.js',
     mode: 'development',
     devtool: 'source-map',
-    stats: 'verbose', // Using verbose here means to output everything
+    //stats: 'verbose', // Using verbose here means to output everything
     output: {
         libraryTarget: 'var',
         library: 'Client'
-    },
-    devServer: {
-        // Update port to 8081 // But it was already set to 8080, so this may not be needed
-        // port: 8081
     },
     module: {
         rules: [
