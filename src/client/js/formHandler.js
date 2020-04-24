@@ -1,7 +1,7 @@
 function handleSubmit(event) {
-    event.preventDefault()
+    //event.preventDefault()
 
-    console.log("handleSubmit called");
+    console.log("handleSubmit vvv called");
 
     fetch("/test");
 
