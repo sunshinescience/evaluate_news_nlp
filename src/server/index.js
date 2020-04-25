@@ -1,32 +1,26 @@
-//const dotenv = require('dotenv');
-//dotenv.config();
-
+const dotenv = require('dotenv');
+dotenv.config();
+//dotenv.config({path: '../../.env' });
 var path = require('path') // Extract the filename from a file path
 const express = require('express')
+const app = express()
 const mockAPIResponse = require('./mockAPI.js')
+const bodyParser = require('body-parser');
+const cors = require('cors'); // Require Cors (which we've already installed on the command line) which let's the browser and server talk to each other withour any security interruptions
 
-//var bodyParser = require('body-parser');
-
-/*
 var aylien = require("aylien_textapi"); // Require the Aylien npm package:
 // Set aylien API credentials
 var textapi = new aylien({
     application_id: process.env.API_ID,
     application_key: process.env.API_KEY
     });
-*/
-const app = express()
-
-// Dependencies
-const bodyParser = require('body-parser');
 
 /* Middleware*/
 // Here we are configuring express to use body-parser as middle-ware so that we can parse our data
-// app.use(bodyParser.urlencoded({ extended: false })); // Here we use the 'use' method to tell bodyParser exactly how we want our data to be parsed
-// app.use(bodyParser.json()); // We're going to mostly want JSON
+app.use(bodyParser.urlencoded({ extended: false })); // Here we use the 'use' method to tell bodyParser exactly how we want our data to be parsed
+app.use(bodyParser.json()); // We're going to mostly want JSON
 
 // Cors for cross origin allowance
-const cors = require('cors'); // Require Cors (which we've already installed on the command line) which let's the browser and server talk to each other withour any security interruptions
 app.use(cors());
 
 // Initialize the main project folder. We're pointing the app to the dist folder
@@ -52,12 +46,11 @@ app.get('/test', function (req, res) {
     res.send(mockAPIResponse)
 })
 
-// **************** Setup Express route ****************** 
+// Setup POST routes
 // TODO: See server.js file from last project at the bottom to work on this part???
-// I should make a POST request here
-
 app.post('/process', process);
 
 function process (req, res) { 
     console.log('process called');   
   };
+  
