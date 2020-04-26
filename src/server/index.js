@@ -60,10 +60,13 @@ app.get("/all", function(req, res){
 
 // Setup POST routes
 //As a test, create a POST route that uses the url /add and sends the response POST received when used to make a request
-app.post('/add', callBack);
+app.post('/add', addData);
 
-function callBack (req, res) {
+function addData (req, res) {
     res.send('POST received');
+    //let data = req.body;
+    //console.log("alyien data is now posted", aylienData);
+    //aylienData["userResponse"] = data.userResp;
 };
 
 /*
