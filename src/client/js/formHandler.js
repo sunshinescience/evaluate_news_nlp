@@ -3,10 +3,9 @@ function handleSubmit(event) {
 
     console.log("handleSubmit vvv called");
 
-    fetch("/test");
+    //fetch("/test");
 
     // Check what text was put into the form field
-    /*
     let formText = document.getElementById('name').value;
     Client.checkForName(formText)
 
@@ -16,8 +15,10 @@ function handleSubmit(event) {
     .then(function(res) {
         document.getElementById('results').innerHTML = res.message
     })
-    */
+    
 } 
+
+
 
 export { handleSubmit } // export is what allows us to import the file within the index.js file
 
