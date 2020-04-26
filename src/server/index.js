@@ -1,3 +1,6 @@
+// Setup empty JS object - to act as endpoint for all routes (i.e., this variable acts as the endpoint for all our app data)
+const aylienData = {};
+
 const dotenv = require('dotenv');
 dotenv.config();
 //dotenv.config({path: '../../.env' });
@@ -44,13 +47,45 @@ app.listen(port, function () {
 })
 
 console.log('try to start server');
+
 app.get('/test', function (req, res) {
-    //console.log("test get calleddd");
+    console.log("test get calleddd");
     res.send(mockAPIResponse)
-})
+});
+
+app.get("/all", function(req, res){
+    console.log("all called");
+    res.send(aylienData);
+});
 
 // Setup POST routes
-// TODO: See server.js file from last project at the bottom to work on this part???
+//As a test, create a POST route that uses the url /add and sends the response POST received when used to make a request
+app.post('/add', callBack);
+
+function callBack (req, res) {
+    res.send('POST received');
+};
+
+/*
+app.post('/allData', postResponse);
+
+function postResponse(){
+    console.log("post received");
+};
+*/
+
+// TODO: POST method route - adds data to aylienData object
+/*
+function postResponse(){
+    let data = req.body;
+    textapi.sentiment({
+        url: data.text,
+        mode: 'document' // parameter used for longer text such as a review or an article via aylien
+    });
+    textPolarity["polarity"] = data.
+};
+*/
+
 /*
 app.post('/process', process);
 
@@ -59,13 +94,9 @@ function process (req, res) {
   };
 */
 
+
+
 /*
-app.get("/testing", function(req, res){
-    res.send("testing it out!");
-});
-*/
-
-
 // Example of using Sentiment Analysis from: https://docs.aylien.com/textapi/sdks/#node-js-sdk
 textapi.sentiment({
     'text': 'John is a very good football player!'
@@ -78,5 +109,5 @@ textapi.sentiment({
       
     }
   });
-  
+  */
   
