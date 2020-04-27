@@ -58,14 +58,20 @@ app.get('/test', function (req, res) {
     res.send(mockAPIResponse)
 });
 
+app.post('/addData', callBack);
+function callBack (req, res) {
+    console.log('addData called');
+};
+
+
 // POST method routes - adds data to aylienData object
 app.post('/add', addInfo);
 
 function addInfo (req, res) { 
   console.log('add called');
-  let data = req.body;
-  aylienData["userResponse"] = data.userResp;
-  console.log(aylienData);
+  //let data = req.body;
+  //aylienData["userResponse"] = data.userResp;
+  //console.log(aylienData);
 };
 
 

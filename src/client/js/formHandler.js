@@ -1,11 +1,11 @@
 function handleSubmit(event) {
     //event.preventDefault()
 
-    console.log("handleSubmit vvv called");
+    console.log("handleSubmit entered");
 
     fetch("http://localhost:8080/test").then(res => res.json()).then(function(res) {console.log(res)});
 
-    postData("http://localhost:8080/add").then(function(res) {console.log(res)});
+    //postData("http://localhost:8080/add").then(function(res) {console.log(res)});
 
     /*
     (async () => {
@@ -22,6 +22,7 @@ function handleSubmit(event) {
         console.log(content);
       })();
       */
+      
 
     //document.getElementById('results').innerHTML = "dddd";
     // Check what text was put into the form field
@@ -36,6 +37,8 @@ function handleSubmit(event) {
     //.then(function(res) {
     //    document.getElementById('results').innerHTML = res.message
     //})
+
+    console.log("handleSubmit done");
 } 
 
 const postData = async (url = '', data = {}) => { 
@@ -47,8 +50,8 @@ const postData = async (url = '', data = {}) => {
         },
         body: JSON.stringify(data), 
     });
-    return await response.json();
-    /*
+    // return await response.json();
+    
     try {
         const newData = await response.json();
         console.log(newData);
@@ -56,11 +59,10 @@ const postData = async (url = '', data = {}) => {
     } catch(error) {
         console.log('error', error);
     };
-    */
+    
 };
 
-// Add some data to our app endpoint as a test. 
-//postData('/add', {userResp: 'warm'});
+
 
 export { handleSubmit } // export is what allows us to import the file within the index.js file
 
