@@ -1,15 +1,9 @@
-// Setup empty JS object - to act as endpoint for all routes (i.e., this variable acts as the endpoint for all our app data)
-const aylienData = {};
-
+// Server side code
 const dotenv = require('dotenv');
 dotenv.config();
 //dotenv.config({path: '../../.env' });
 var path = require('path') // Extract the filename from a file path
-const express = require('express')
 const mockAPIResponse = require('./mockAPI.js')
-const bodyParser = require('body-parser');
-const cors = require('cors'); // Require Cors (which we've already installed on the command line) which let's the browser and server talk to each other withour any security interruptions
-
 var aylien = require("aylien_textapi"); // Require the Aylien npm package:
 
 // Set aylien API credentials
@@ -18,11 +12,17 @@ var textapi = new aylien({
     application_key: process.env.API_KEY
     });
 
-// Create an instance of the app, with express
-const app = express()
+// Setup empty JS object - to act as endpoint for all routes (i.e., this variable acts as the endpoint for all our app data)
+const aylienData = {};
 
-// Initialize the main project folder. We're pointing the app to the dist folder
-app.use(express.static('dist'))
+// Require Express (which we've already installed on the command line) to run server and routes
+const express = require('express');
+
+// Create an instance of our app, with express
+const app = express();
+
+// Dependencies
+const bodyParser = require('body-parser');
 
 /* Middleware*/
 // Here we are configuring express to use body-parser as middle-ware so that we can parse our data
@@ -30,97 +30,43 @@ app.use(bodyParser.urlencoded({ extended: false })); // Here we use the 'use' me
 app.use(bodyParser.json()); // We're going to mostly want JSON
 
 // Cors for cross origin allowance
+const cors = require('cors'); // Require Cors (which we've already installed on the command line) which let's the browser and server talk to each other withour any security interruptions
 app.use(cors());
 
-// console.log(__dirname)
+// Initialize the main project folder
+app.use(express.static('dist')); // We use our 'use' method and this time, we're pointing our app to the folder that we want it to look at
 
 // **************** Setup Server ******************
-const port = 8080; // Setting the port
+// Map URL's to functions
+const port = 8080; // We set our port
 
-// Designates what port the app will listen to for incoming requests
-app.listen(port, function () {
-    console.log(`App listening on port ${port}.`)
-})
+const server = app.listen(port, listening); // Call the listen method and pass it our callback function
 
-console.log('try to start server');
+function listening() {
+  console.log(`server running on local host: ${port}`);
+}
 
-app.get('/', function (req, res) {
-    res.sendFile('dist/index.html')
-})
-
-app.get('/test', function (req, res) {
-    console.log("test GET calleddd");
-    res.send(mockAPIResponse)
-});
-
-// Just testing a GET route to an app instance, using the path '/data' to return a string 'welcome!'
-// app.get('/data', function (req, res) { res.send('welcome!'); });
-
-// Setup POST routes
-app.get('/all', function (req, res) { // Here, we use the get method on the instance of our app (called app above). Also, we created a new route named '/all' here, so that the route 'localhost:3000/all' will now trigger the get request, which will return the JS object. req is the data provided by the GET request and res is the data returned to the GET request
+// **************** Setup Express route ****************** 
+// Note that the function is within the GET in the code below, but it could be placed separate 
+app.get('/all', function (req, res) { // Here, we use the get method on the instance of our app (called app above). Also, we created a new route named '/all' here, so that the route 'localhost:8080/all' will now trigger the get request, which will return the JS object. req is the data provided by the GET request and res is the data returned to the GET request
   console.log('all called');
   res.send(aylienData); // Using the get request to return the data (within projectData - once we post data into projectData), i.e., adding the line of code that will return the JS object when the GET request is made
 });
 
+app.get('/test', function (req, res) {
+    console.log("test get calleddd");
+    res.send(mockAPIResponse)
+});
 
-//As a test, create a POST route that uses the url /addData and sends the response POST received when used to make a request
-app.post('/add', addData );
+// POST method routes - adds data to aylienData object
+app.post('/add', addInfo);
 
-function addData (req, res) {
-    console.log("addData called");
-    let data = req.body;
-    aylienData["userResponse"] = data.userResp;
- };
- 
-
-data = [];
-app.post('/addInfo', addSomeData);
-function addSomeData (req, res){
-    let theData = req.body;
-    data.push(theData);
-    console.log(req.body);
- };
-
-/*
-app.post('/add', addData);
-
-function addData (req, res) {
-    console.log("add POST calleddd");
-    res.send({"result": "ok"});
-    //let data = req.body;
-    //console.log("alyien data is now posted", aylienData);
-    //aylienData["userResponse"] = data.userResp;
+function addInfo (req, res) { 
+  console.log('add called');
+  let data = req.body;
+  aylienData["userResponse"] = data.userResp;
+  console.log(aylienData);
 };
-*/
-
-
-app.post('/allData', postResponse);
-
-function postResponse(){
-    console.log("post received");
-};
-
-
-// TODO: POST method route - adds data to aylienData object
-/*
-function postResponse(){
-    let data = req.body;
-    textapi.sentiment({
-        url: data.text,
-        mode: 'document' // parameter used for longer text such as a review or an article via aylien
-    });
-    textPolarity["polarity"] = data.
-};
-*/
-
-/*
-app.post('/process', process);
-
-function process (req, res) { 
-    console.log('process called');   
-  };
-*/
-
 
 
 /*
