@@ -34,10 +34,6 @@ app.use(cors());
 
 // console.log(__dirname)
 
-app.get('/', function (req, res) {
-    res.sendFile('dist/index.html')
-})
-
 // **************** Setup Server ******************
 const port = 8080; // Setting the port
 
@@ -48,34 +44,62 @@ app.listen(port, function () {
 
 console.log('try to start server');
 
+app.get('/', function (req, res) {
+    res.sendFile('dist/index.html')
+})
+
 app.get('/test', function (req, res) {
-    console.log("test get calleddd");
+    console.log("test GET calleddd");
     res.send(mockAPIResponse)
 });
 
-app.get("/all", function(req, res){
-    console.log("all called");
-    res.send(aylienData);
-});
+// Just testing a GET route to an app instance, using the path '/data' to return a string 'welcome!'
+// app.get('/data', function (req, res) { res.send('welcome!'); });
 
 // Setup POST routes
-//As a test, create a POST route that uses the url /add and sends the response POST received when used to make a request
+app.get('/all', function (req, res) { // Here, we use the get method on the instance of our app (called app above). Also, we created a new route named '/all' here, so that the route 'localhost:3000/all' will now trigger the get request, which will return the JS object. req is the data provided by the GET request and res is the data returned to the GET request
+  console.log('all called');
+  res.send(aylienData); // Using the get request to return the data (within projectData - once we post data into projectData), i.e., adding the line of code that will return the JS object when the GET request is made
+});
+
+
+//As a test, create a POST route that uses the url /addData and sends the response POST received when used to make a request
+app.post('/add', addData );
+
+function addData (req, res) {
+    console.log("addData called");
+    let data = req.body;
+    aylienData["userResponse"] = data.userResp;
+ };
+ 
+
+data = [];
+app.post('/addInfo', addSomeData);
+function addSomeData (req, res){
+    let theData = req.body;
+    data.push(theData);
+    console.log(req.body);
+ };
+
+/*
 app.post('/add', addData);
 
 function addData (req, res) {
-    res.send('POST received');
+    console.log("add POST calleddd");
+    res.send({"result": "ok"});
     //let data = req.body;
     //console.log("alyien data is now posted", aylienData);
     //aylienData["userResponse"] = data.userResp;
 };
+*/
 
-/*
+
 app.post('/allData', postResponse);
 
 function postResponse(){
     console.log("post received");
 };
-*/
+
 
 // TODO: POST method route - adds data to aylienData object
 /*
@@ -108,9 +132,9 @@ textapi.sentiment({
       //console.log(response);
       console.log("Polarity: ", response.polarity);
       //console.log(response.subjectivity);
-      //console.log(response.text);
-      
+      //console.log(response.text);     
     }
   });
   */
-  
+ 
+  // TODO:  after getting the response from the API, store the data in a variable, and in the client side you create an UI updating function that will update the UI 
