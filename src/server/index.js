@@ -64,20 +64,20 @@ app.get('/test', function (req, res) {
 app.post('/add', addInfo);
 
 function addInfo (req, res) { 
-  console.log('add called');
+  //console.log('add called');
   let data = req.body;
-  console.log(data);
+  //console.log(data);
 
   // do alien stuff and send the data
 
-  res.send({"hello": "from backend"});
+  //res.send({"hello": "from backend"});
 
-  //aylienData["userResponse"] = data.userResp;
-  //console.log(aylienData);
+  aylienData["userResponse"] = data.userResp;
+  console.log(aylienData);
 };
 
 
-/*
+
 // Example of using Sentiment Analysis from: https://docs.aylien.com/textapi/sdks/#node-js-sdk
 textapi.sentiment({
     'text': 'John is a very good football player!'
@@ -89,6 +89,6 @@ textapi.sentiment({
       //console.log(response.text);     
     }
   });
-  */
+ 
  
   // TODO:  after getting the response from the API, store the data in a variable, and in the client side you create an UI updating function that will update the UI 

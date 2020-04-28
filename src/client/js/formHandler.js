@@ -12,12 +12,12 @@ function handleSubmit(event) {
     });
     */
 
-   postData("http://localhost:8080/add", {"hi": "from browser"});
+   //postData("http://localhost:8080/add", {"hi": "from browser"});
+   postData("http://localhost:8080/add", {userResp: 'warm'});
+   
 
     console.log("handleSubmit done");
 };
-    
-    //
 
 
 
@@ -79,5 +79,6 @@ const postData = async (url = '', data = {}) => {
     };
 };
 
+// postData("http://localhost:8080/add", {userResp: 'warm'});
 
 export { handleSubmit } // export is what allows us to import the file within the index.js file
