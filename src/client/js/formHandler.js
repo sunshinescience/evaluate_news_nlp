@@ -1,17 +1,15 @@
-function handleSubmit(event) {
-    //event.preventDefault()
-
+async function handleSubmit(event) {
+    event.preventDefault();
     console.log("handleSubmit entered");
-
-    //getData("http://localhost:8080/test");
-
-    fetch('http://localhost:8080/test')
+    const m = await fetch('http://localhost:8080/test')
     .then((response) => {
-        return response.json();
+        return response.json(); // Parse the response as JSON
     })
-    .then((data) => {
+    .then((data) => { // Examine the text in the response
         console.log(data);
     });
+    console.log("handleSubmit done");
+};
     
     //postData("http://localhost:8080/add").then(function(res) {console.log(res)});
 
@@ -46,8 +44,6 @@ function handleSubmit(event) {
     //    document.getElementById('results').innerHTML = res.message
     //})
 
-    console.log("handleSubmit done");
-} 
 
 const getData = async (url = '') => { 
     //console.log(url);
@@ -84,8 +80,4 @@ const postData = async (url = '', data = {}) => {
     };
 };
 
-
-
 export { handleSubmit } // export is what allows us to import the file within the index.js file
-
-

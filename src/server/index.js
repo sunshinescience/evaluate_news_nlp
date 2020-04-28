@@ -55,7 +55,7 @@ app.get('/all', function (req, res) { // Here, we use the get method on the inst
 
 app.get('/test', function (req, res) {
     console.log("test get calleddd");
-    res.send(mockAPIResponse);
+    res.send("ssss");
 });
 
 app.post('/addData', callBack);
