@@ -55,14 +55,13 @@ app.get('/all', function (req, res) { // Here, we use the get method on the inst
 
 app.get('/test', function (req, res) {
     console.log("test get calleddd");
-    res.send("ssss");
+    res.send(mockAPIResponse);
 });
 
 app.post('/addData', callBack);
 function callBack (req, res) {
     console.log('addData called');
 };
-
 
 // POST method routes - adds data to aylienData object
 app.post('/add', addInfo);
