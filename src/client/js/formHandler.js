@@ -1,35 +1,25 @@
-async function handleSubmit(event) {
+function handleSubmit(event) {
     event.preventDefault();
     console.log("handleSubmit entered");
-    const m = await fetch('http://localhost:8080/test')
-    .then((response) => {
-        return response.json(); // Parse the response as JSON
+
+    /*
+    fetch('http://localhost:8080/test')
+    .then((data) => {
+        return data.json(); // Parse the response as JSON
     })
     .then((data) => { // Examine the text in the response
         console.log(data);
     });
+    */
+
+   postData("http://localhost:8080/add", {"hi": "from browser"});
+
     console.log("handleSubmit done");
 };
-
     
-    //postData("http://localhost:8080/add").then(function(res) {console.log(res)});
+    //
 
-    /*
-    (async () => {
-        const rawResponse = await fetch('http://localhost:8080/add', {
-          method: 'POST',
-          headers: {
-            'Accept': 'application/json',
-            'Content-Type': 'application/json'
-          },
-          body: JSON.stringify({a: 1, b: 'Textual content'})
-        });
-        const content = await rawResponse.json();
-      
-        console.log(content);
-      })();
-      */
-      
+
 
     //document.getElementById('results').innerHTML = "dddd";
     // Check what text was put into the form field
@@ -68,7 +58,7 @@ const getData = async (url = '') => {
         console.log('error', error);
     };
 };
-
+*/
 const postData = async (url = '', data = {}) => { 
     const response = await fetch(url, {
         method: 'POST', 
@@ -88,6 +78,6 @@ const postData = async (url = '', data = {}) => {
         console.log('error', error);
     };
 };
-*/
+
 
 export { handleSubmit } // export is what allows us to import the file within the index.js file

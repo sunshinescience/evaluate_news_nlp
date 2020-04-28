@@ -55,20 +55,23 @@ app.get('/all', function (req, res) { // Here, we use the get method on the inst
 
 app.get('/test', function (req, res) {
     console.log("test get calleddd");
-    res.send(mockAPIResponse);
+    //res.send(mockAPIResponse);
+    res.send({"sss": "dsdd"});
 });
 
-app.post('/addData', callBack);
-function callBack (req, res) {
-    console.log('addData called');
-};
 
 // POST method routes - adds data to aylienData object
 app.post('/add', addInfo);
 
 function addInfo (req, res) { 
   console.log('add called');
-  //let data = req.body;
+  let data = req.body;
+  console.log(data);
+
+  // do alien stuff and send the data
+
+  res.send({"hello": "from backend"});
+
   //aylienData["userResponse"] = data.userResp;
   //console.log(aylienData);
 };
