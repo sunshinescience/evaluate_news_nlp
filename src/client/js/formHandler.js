@@ -14,8 +14,9 @@ function handleSubmit(event) {
 
    const userInput = document.getElementById('name').value;
    //postData("http://localhost:8080/add", {"hi": "from browser"});
-   postData("http://localhost:8080/add", {"userResp": userInput});
+   postData("http://localhost:8080/add", {"userResponse": userInput});
    
+   updateUI();
 
     console.log("handleSubmit done");
 };
@@ -44,22 +45,6 @@ function handleSubmit(event) {
 }
 */
 
-/*
-const getData = async (url = '') => { 
-    //console.log(url);
-    console.log("started getData");
-    
-    try {
-        const response = await fetch(url);
-        console.log("awaited fetch");
-        //const newData = await response.json();
-        //console.log(response);
-        //return response;
-    } catch(error) {
-        console.log('error', error);
-    };
-};
-*/
 const postData = async (url = '', data = {}) => { 
     const response = await fetch(url, {
         method: 'POST', 
@@ -85,5 +70,20 @@ const postData = async (url = '', data = {}) => {
 };
 
 // postData("http://localhost:8080/add", {userResp: 'warm'});
+
+
+// Updating the UI of the app dynamically
+const updateUI = async () => {
+    const request = await fetch('http://localhost:8080/all');
+    try{
+      const allData = await request.json();
+      console.log("allData: ", allData);
+      document.getElementById('results').innerHTML = allData.userResponse;
+  
+    }catch(error){
+      console.log("error", error);
+    }
+  };
+ 
 
 export { handleSubmit } // export is what allows us to import the file within the index.js file

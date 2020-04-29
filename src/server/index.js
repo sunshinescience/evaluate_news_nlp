@@ -49,8 +49,8 @@ function listening() {
 // **************** Setup Express route ****************** 
 // Note that the function is within the GET in the code below, but it could be placed separate 
 app.get('/all', function (req, res) { // Here, we use the get method on the instance of our app (called app above). Also, we created a new route named '/all' here, so that the route 'localhost:8080/all' will now trigger the get request, which will return the JS object. req is the data provided by the GET request and res is the data returned to the GET request
-  console.log('all called');
-  res.send(aylienData); // Using the get request to return the data (within projectData - once we post data into projectData), i.e., adding the line of code that will return the JS object when the GET request is made
+  //console.log('all called');
+  res.send(aylienData); // Using the get request to return the data (within projectData - once we post data into aylienData), i.e., adding the line of code that will return the JS object when the GET request is made
 });
 
 app.get('/test', function (req, res) {
@@ -73,7 +73,7 @@ function addInfo (req, res) {
 
   //res.send({"hello": "from backend"});
 
-  aylienData["userResponse"] = data.userResp;
+  aylienData["userResponse"] = data.userResponse;
   console.log(aylienData);
 };
 
