@@ -1,3 +1,5 @@
+var validUrl = require('valid-url');
+
 function handleSubmit(event) {
     event.preventDefault();
     console.log("handleSubmit entered");
@@ -14,19 +16,15 @@ function handleSubmit(event) {
 
    const userInput = document.getElementById('name').value;
    //postData("http://localhost:8080/add", {"hi": "from browser"});
+   
+   checkForURL(userInput);
+
    postData("http://localhost:8080/add", {"userResponse": userInput});
    
    updateUI();
 
     console.log("handleSubmit done");
 };
-
-
-
-    //document.getElementById('results').innerHTML = "dddd";
-    // Check what text was put into the form field
-    //let formText = document.getElementById('name').value = "nnnn";
-    //formText = "dddd";
 
 /*
 function handleSubmit(event) {
@@ -84,6 +82,14 @@ const updateUI = async () => {
       console.log("error", error);
     }
   };
- 
 
+function checkForURL(inputText) {
+    if (validUrl.isUri(inputText)){
+        console.log('Looks like an URI');
+    } else {
+        console.log('Not a URI');
+    }
+};
+
+export { checkForURL }
 export { handleSubmit } // export is what allows us to import the file within the index.js file
