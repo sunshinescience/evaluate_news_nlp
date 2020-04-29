@@ -67,6 +67,7 @@ function addInfo (req, res) {
   //console.log('add called');
   let data = req.body;
   //console.log(data);
+  console.log(data.userResp);
 
   // do alien stuff and send the data
 
@@ -75,8 +76,6 @@ function addInfo (req, res) {
   aylienData["userResponse"] = data.userResp;
   console.log(aylienData);
 };
-
-
 
 // Example of using Sentiment Analysis from: https://docs.aylien.com/textapi/sdks/#node-js-sdk
 textapi.sentiment({

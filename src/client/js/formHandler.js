@@ -12,8 +12,9 @@ function handleSubmit(event) {
     });
     */
 
+   const userInput = document.getElementById('name').value;
    //postData("http://localhost:8080/add", {"hi": "from browser"});
-   postData("http://localhost:8080/add", {userResp: 'warm'});
+   postData("http://localhost:8080/add", {"userResp": userInput});
    
 
     console.log("handleSubmit done");
@@ -74,6 +75,10 @@ const postData = async (url = '', data = {}) => {
         const newData = await response.json();
         console.log(newData);
         return newData;
+
+
+        // update dom with newData
+
     } catch(error) {
         console.log('error', error);
     };
