@@ -13,7 +13,7 @@ function handleSubmit(event) {
     postData('http://localhost:8081/add', userInput)
    }
    else {
-        document.getElementById('errorMessage').innerHTML = "Error: Not a valid URI";
+        document.getElementById('errorMessage').innerHTML = "Error: Not a valid URL";
     }
     
     postData("http://localhost:8080/add", {"userResponse": userInput});
