@@ -1,5 +1,7 @@
 var validUrl = require('valid-url');
 
+
+
 function handleSubmit(event) {
     event.preventDefault();
     console.log("handleSubmit entered");
@@ -17,7 +19,15 @@ function handleSubmit(event) {
    const userInput = document.getElementById('name').value;
    //postData("http://localhost:8080/add", {"hi": "from browser"});
    
-   checkForURL(userInput);
+   /*
+   //checkForURL(userInput);
+   if (validUrl.isUri(userInput)){
+        console.log('Looks like an URI');
+    } else {
+        console.log('Not a URI');
+    }
+    */
+
 
    postData("http://localhost:8080/add", {"userResponse": userInput});
    
