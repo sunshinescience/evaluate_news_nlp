@@ -1,7 +1,5 @@
 var validUrl = require('valid-url');
 
-
-
 function handleSubmit(event) {
     event.preventDefault();
     console.log("handleSubmit entered");
@@ -87,6 +85,8 @@ const updateUI = async () => {
       const allData = await request.json();
       console.log("allData: ", allData);
       document.getElementById('results').innerHTML = allData.userResponse;
+      document.getElementById('polarity').innerHTML = allData.userPolarity;
+      document.getElementById('subjectivity').innerHTML = allData.userSubjectivity;
   
     }catch(error){
       console.log("error", error);
