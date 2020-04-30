@@ -59,7 +59,6 @@ app.get('/test', function (req, res) {
     res.send({"sss": "dsdd"});
 });
 
-
 // POST method routes - adds data to aylienData object
 app.post('/add', addInfo);
 
@@ -81,36 +80,3 @@ function addInfo (req, res) {
   });
   console.log("Data: ", aylienData);
 };
-
-/*
-// Example of using Sentiment Analysis from: https://docs.aylien.com/textapi/sdks/#node-js-sdk
-textapi.sentiment({
-    'text': 'John is a very good football player!'
-  }, function(error, response) {
-      console.log("Polarity: ", response.polarity);
-      //console.log(response.subjectivity);
-      console.log(response.text);  
-    if (error === null) {
-      console.log(response);   
-    }
-  });
- */
- 
-  // TODO:  after getting the response from the API, store the data in a variable, and in the client side you create an UI updating function that will update the UI 
-
-/*
-  // Example of using Sentiment Analysis from: https://docs.aylien.com/textapi/sdks/#node-js-sdk
-app.post('/article', (req,res) => {
-  textapi.sentiment({
-    mode: document, // document is the parameter used from aylien for longer text
-    url: req.body.text // The URL paramter used from aylien to analyze the URL (in string format)
-  }, function(error, response) {
-      console.log("Polarity: ", response.polarity);
-      //console.log(response.subjectivity);
-      //console.log(response.text);  
-    if (error === null) {
-      console.log(response);   
-    }
-  })
-})
-*/
