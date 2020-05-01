@@ -9,6 +9,7 @@ function handleSubmit(event) {
    
    // Check for valid URL (from: https://github.com/ogt/valid-url)
    if (validUrl.isUri(userInput)){
+        document.getElementById('noErrorMessage').innerHTML = "This is a valid URL";
         updateURL(); // Form Results: Text entered, Polarity, and Subjectivity show up as empty on the page if a URL is input into the form
    }
    // Conduct aylien API text analysis
@@ -61,16 +62,32 @@ const updateUI = async () => {
   };
 
 function updateURL() {
-    const validURL = document.getElementById('noErrorMessage').innerHTML = "This is a valid URL";
-    document.getElementById('results').innerHTML = ""; // If checking for a URL, then the form results, polarity, and subjectivity show as empty
+    // If checking for a URL, then the form results, polarity, and subjectivity show as empty
+    document.getElementById('results').innerHTML = "";
     document.getElementById('polarity').innerHTML = "";
     document.getElementById('subjectivity').innerHTML = "";
-
-    return validURL
 };
-
-const valURL = updateURL();
 
 export { handleSubmit,
         updateUI,
         updateURL } // export is what allows us to import the file within the index.js file
+
+
+/*
+const updateUI = async () => {
+    const request = await fetch('http://localhost:8080/allHendrik');
+    try{
+      const allData = await request.json();
+      console.log("allData: ", allData);
+      document.getElementById('results').innerHTML = allData;
+    }catch(error){
+      console.log("error", error);
+    }
+    //return allData;
+  };
+
+updateUI();
+*/
+
+
+

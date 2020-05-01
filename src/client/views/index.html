@@ -25,7 +25,7 @@
             <section>
                 <form class="" onsubmit="return Client.handleSubmit(event)">
                     <input id="name" type="text" name="input" value="" placeholder="Enter text or URL here">
-                    <input type="submit" name="" value="submit" onclick="return Client.handleSubmit(event)">
+                    <input type="submit" name="" value="submit">
                 </form>
             </section>
 
@@ -72,6 +72,12 @@
                      });
                     });
                 };       
+        </script>
+        <!-- Trying to not have form results data on the page, when a user refreshes the page -->
+        <script>
+            if ( window.history.replaceState ) {
+              window.history.replaceState( null, null, window.location.href );
+            }
         </script>                    
     </body>
 </html>
