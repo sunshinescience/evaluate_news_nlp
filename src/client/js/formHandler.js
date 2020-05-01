@@ -74,5 +74,3 @@ const valURL = updateURL();
 export { handleSubmit,
         updateUI,
         updateURL } // export is what allows us to import the file within the index.js file
-
-exports.valURL = valURL;
