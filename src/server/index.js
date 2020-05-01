@@ -54,7 +54,7 @@ app.get('/all', function (req, res) { // Here, we use the get method on the inst
 });
 
 app.get('/test', function (req, res) {
-    console.log("test get calleddd");
+    //console.log("test get calleddd");
     //res.send(mockAPIResponse);
     res.send({"sss": "dsdd"});
 });
@@ -74,10 +74,11 @@ function addInfo (req, res) {
   }, function(error, response) {  
       aylienData["userPolarity"] = response.polarity;
       aylienData["userSubjectivity"] = response.subjectivity;
-      console.log("Data: ", aylienData);
+      //console.log(aylienData);
     if (error === null) {
-      //console.log(response);   
+      console.log("Data: ", response);   
     }
   });
-  
 };
+
+exports.aylienData = aylienData;

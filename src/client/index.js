@@ -1,4 +1,4 @@
-import { handleSubmit } from './js/formHandler'
+import { handleSubmit, updateUI, updateURL } from './js/formHandler'
 
 import './styles/base.scss'
 import './styles/footer.scss'
@@ -7,6 +7,8 @@ import './styles/header.scss'
 import './styles/resets.scss' 
 
 export {
-    handleSubmit
+    handleSubmit,
+    updateUI,
+    updateURL
 }
 

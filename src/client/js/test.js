@@ -1,4 +1,16 @@
-//var requestPost = require('./formHandler')
+/*
+var dataInfo = require('./formHandler')
+const validateText = dataInfo.updateURL;
+*/
+import { valURL } from './formHandler'
+
+test('this should be a string ', () => {
+  expect( typeof valURL ).toBe( 'string' )
+});
+
+//var requestObject = require('./index')
+//var validateRequest = requestObject.aylienData;
+
 /*
 import { updateUI } from './formHandler'
 
@@ -18,7 +30,10 @@ export {
 }
 */
 
-
+/*
 test('adummy', () => {
   expect(1).toBe(1);
 });
+*/
+
+

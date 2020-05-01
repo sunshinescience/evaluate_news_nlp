@@ -9,7 +9,6 @@ function handleSubmit(event) {
    
    // Check for valid URL (from: https://github.com/ogt/valid-url)
    if (validUrl.isUri(userInput)){
-        document.getElementById('noErrorMessage').innerHTML = "This is a valid URL";
         updateURL(); // Form Results: Text entered, Polarity, and Subjectivity show up as empty on the page if a URL is input into the form
    }
    // Conduct aylien API text analysis
@@ -18,8 +17,8 @@ function handleSubmit(event) {
         postData("http://localhost:8080/add", {"userResponse": userInput});
         updateUI(); // Update analysis of Form Results: Text entered, Polarity, and Subjectivity
    }
-
     console.log("handleSubmit done");
+    return userInput;
 };
 
 const postData = async (url = '', data = {}) => { 
@@ -61,14 +60,19 @@ const updateUI = async () => {
     return allData;
   };
 
-console.log("result printed: ", updateUI())
-
 function updateURL() {
-    // If checking for a URL, then the form results, polarity, and subjectivity show as empty
-    document.getElementById('results').innerHTML = "";
+    const validURL = document.getElementById('noErrorMessage').innerHTML = "This is a valid URL";
+    document.getElementById('results').innerHTML = ""; // If checking for a URL, then the form results, polarity, and subjectivity show as empty
     document.getElementById('polarity').innerHTML = "";
     document.getElementById('subjectivity').innerHTML = "";
+
+    return validURL
 };
 
+const valURL = updateURL();
+
 export { handleSubmit,
-        updateUI } // export is what allows us to import the file within the index.js file
+        updateUI,
+        updateURL } // export is what allows us to import the file within the index.js file
+
+exports.valURL = valURL;
