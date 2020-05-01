@@ -2,19 +2,22 @@ var validUrl = require('valid-url');
 
 function handleSubmit(event) {
     event.preventDefault();
-    console.log("handleSubmit entered");
+    console.log("handleSubmit entered, checking input for url/no-url");
 
    //postData("http://localhost:8080/add", {"hi": "from browser"});
    const userInput = document.getElementById('name').value;
    
    // Check for valid URL (from: https://github.com/ogt/valid-url)
    if (validUrl.isUri(userInput)){
+        console.log("is a url", userInput);
         document.getElementById('noErrorMessage').innerHTML = "This is a valid URL";
-        updateURL(); // Form Results: Text entered, Polarity, and Subjectivity show up as empty on the page if a URL is input into the form
+        //updateURL(); // Form Results: Text entered, Polarity, and Subjectivity show up as empty on the page if a URL is input into the form
    }
    // Conduct aylien API text analysis
    else {
-        document.getElementById('errorMessage').innerHTML = "Error: Not a valid URL";
+        console.log("not a url", userInput);
+        document.getElementById('noErrorMessage').innerHTML = "";
+        console.log("sending input to backendn for analysis");
         postData("http://localhost:8080/add", {"userResponse": userInput});
         updateUI(); // Update analysis of Form Results: Text entered, Polarity, and Subjectivity
    }
@@ -83,7 +86,7 @@ const updateUI = async () => {
     }catch(error){
       console.log("error", error);
     }
-    //return allData;
+    return allData;
   };
 
 updateUI();

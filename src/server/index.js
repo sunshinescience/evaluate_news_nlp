@@ -13,7 +13,7 @@ var textapi = new aylien({
     });
 
 // Setup empty JS object - to act as endpoint for all routes (i.e., this variable acts as the endpoint for all our app data)
-const aylienData = {};
+const aylienData = {"done": false};
 
 // Require Express (which we've already installed on the command line) to run server and routes
 const express = require('express');
@@ -48,9 +48,10 @@ function listening() {
 
 // **************** Setup Express route ****************** 
 app.get('/all', function (req, res) { // Here, we use the get method on the instance of our app (called app above). Also, we created a new route named '/all' here, so that the route 'localhost:8080/all' will now trigger the get request, which will return the JS object. req is the data provided by the GET request and res is the data returned to the GET request
-  console.log('all called');
+  console.log('/all (1): called');
   res.send(aylienData); // Using the get request to return the data (within projectData - once we post data into aylienData), i.e., adding the line of code that will return the JS object when the GET request is made
-  console.log("all called print after sending aylienData: ", aylienData)
+  //console.log("all called print after sending aylienData: ", aylienData)
+  console.log("/all (2): done\n");
 });
 
 app.get('/test', function (req, res) {
@@ -59,27 +60,37 @@ app.get('/test', function (req, res) {
     res.send({"sss": "dsdd"});
 });
 
+app.get('/allHendrik', function (req, res) {
+  const someData = ["Hendrik", 3, "Papa", 36];
+  res.send(someData);
+});
+
 // POST method routes - adds data to aylienData object
 app.post('/add', addInfo);
 
 function addInfo (req, res) { 
-  //res.send({"hello": "from backend"});
   let data = req.body;
+  console.log("/add (1): called with POST with", data);
   let formInput = data.userResponse; // Input from the user in the form on the page
-  //aylienData["userResponse"] = formInput;
+  console.log("/add (2): analyzing input", formInput);
+  aylienData["userResponse"] = formInput;
+  
 
   // Using the aylien SDK to use their API with user input
+  console.log("/add (3): starting alyien request", aylienData);
   textapi.sentiment({
     'text': formInput
-  }, function(error, response) { 
-      aylienData["userResponse"] = formInput; 
+  }, function(error, response) {  
+      console.log("/add (4): alyien analysis completed");
       aylienData["userPolarity"] = response.polarity;
       aylienData["userSubjectivity"] = response.subjectivity;
       //console.log(aylienData);
     if (error === null) {
-      console.log("Data: ", response);   
+      console.log("/add (5): alyien response", response);   
     }
   });
+  
+ console.log("/add (6): done\n")
 };
 
 
