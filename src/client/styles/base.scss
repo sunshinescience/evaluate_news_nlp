@@ -13,6 +13,31 @@ section {
     margin: 50px auto;
 }
 
+#formResults {
+    color: black;
+    padding: 0;
+    font-size: 20px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    text-align: left;
+}
+
+#analysisText {
+    color: black;
+    font-weight: bold; 
+    padding: 0;
+    font-size: 16px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    text-align: left;
+}
+
+#results {
+    color: black;
+    padding: 0;
+    font-size: 16px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    text-align: left;
+}
+
 #polarity {
     color: black;
     padding: 0;
@@ -31,6 +56,14 @@ section {
 
 #errorMessage {
     color: red;
+    padding: 0;
+    font-size: 16px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    text-align: left;
+}
+
+#noErrorMessage {
+    color: black;
     padding: 0;
     font-size: 16px;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;

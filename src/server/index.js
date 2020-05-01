@@ -65,18 +65,19 @@ app.post('/add', addInfo);
 function addInfo (req, res) { 
   //res.send({"hello": "from backend"});
   let data = req.body;
-  let formInput = data.userResponse; // Input from the user in the form of the page
+  let formInput = data.userResponse; // Input from the user in the form on the page
   aylienData["userResponse"] = formInput;
 
+  // Using the aylien SDK to use their API with user input
   textapi.sentiment({
     'text': formInput
-  }, function(error, response) {
-      console.log(response.text);  
+  }, function(error, response) {  
       aylienData["userPolarity"] = response.polarity;
       aylienData["userSubjectivity"] = response.subjectivity;
+      console.log("Data: ", aylienData);
     if (error === null) {
       //console.log(response);   
     }
   });
-  console.log("Data: ", aylienData);
+  
 };

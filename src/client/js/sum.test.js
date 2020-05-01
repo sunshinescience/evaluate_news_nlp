@@ -1,4 +1,6 @@
 // Getting started docs: https://jestjs.io/docs/en/getting-started.html
+// In the console, run: npm run test1
+
 // Write the test
 const sum = require('./sum');
 

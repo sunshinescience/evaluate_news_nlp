@@ -4,21 +4,20 @@ function handleSubmit(event) {
     event.preventDefault();
     console.log("handleSubmit entered");
 
-   const userInput = document.getElementById('name').value;
    //postData("http://localhost:8080/add", {"hi": "from browser"});
+   const userInput = document.getElementById('name').value;
    
-   
-   //check for valid URL (from: https://github.com/ogt/valid-url)
+   // Check for valid URL (from: https://github.com/ogt/valid-url)
    if (validUrl.isUri(userInput)){
-    postData('http://localhost:8081/add', userInput)
+        document.getElementById('noErrorMessage').innerHTML = "This is a valid URL";
+        updateURL(); // Form Results: Text entered, Polarity, and Subjectivity show up as empty on the page if a URL is input into the form
    }
+   // Conduct aylien API text analysis
    else {
         document.getElementById('errorMessage').innerHTML = "Error: Not a valid URL";
-    }
-    
-    postData("http://localhost:8080/add", {"userResponse": userInput});
-   
-    updateUI();
+        postData("http://localhost:8080/add", {"userResponse": userInput});
+        updateUI(); // Update analysis of Form Results: Text entered, Polarity, and Subjectivity
+   }
 
     console.log("handleSubmit done");
 };
@@ -37,6 +36,7 @@ const postData = async (url = '', data = {}) => {
     try {
         const newData = await response.json();
         console.log(newData);
+        //await updateUI();
         return newData;
     } catch(error) {
         console.log('error', error);
@@ -58,6 +58,17 @@ const updateUI = async () => {
     }catch(error){
       console.log("error", error);
     }
+    return allData;
   };
 
-export { handleSubmit } // export is what allows us to import the file within the index.js file
+console.log("result printed: ", updateUI())
+
+function updateURL() {
+    // If checking for a URL, then the form results, polarity, and subjectivity show as empty
+    document.getElementById('results').innerHTML = "";
+    document.getElementById('polarity').innerHTML = "";
+    document.getElementById('subjectivity').innerHTML = "";
+};
+
+export { handleSubmit,
+        updateUI } // export is what allows us to import the file within the index.js file
