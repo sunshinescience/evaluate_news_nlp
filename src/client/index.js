@@ -1,4 +1,4 @@
-import { handleSubmit, updateUI, checkURL } from './js/formHandler'
+import { handleSubmit, checkURL } from './js/formHandler'
 
 import './styles/base.scss'
 import './styles/footer.scss'
@@ -8,7 +8,6 @@ import './styles/resets.scss'
 
 export {
     handleSubmit,
-    updateUI,
     checkURL
 }
 
