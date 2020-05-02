@@ -1,24 +1,9 @@
-//import { validUrl } from './formHandler.js'
+// In the console, run: npm run test1
+
 import { handleSubmit, updateUI, validURL} from './formHandler'
 
-/*
-test('This is a function, so its expected to not be an object', () => {
-  expect( updateUI ).not.toBe( Object );
-});
-*/
-
-test('there is a function that checks to see if input is a valid URL', () => {
-  expect(validURL()).toBeDefined();
-});
-
-/*
-test('adummy', () => {
-  expect(1).toBe(1);
-});
-*/
-
-test('there is a "stop" in Christoph', () => {
-  expect('Christoph').toMatch(/stop/);
+test('This function does not return anything it is expected to be undefined', () => {
+  expect(validURL()).toBeUndefined();
 });
 
 test('there is a "require" in validUrl', () => {

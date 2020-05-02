@@ -21,7 +21,7 @@ function validURL(userInput) {
   // Conduct aylien API text analysis
   else {
       console.log("not a url", userInput);
-      document.getElementById('noErrorMessage').innerHTML = "";
+      //document.getElementById('noErrorMessage').innerHTML = " ";
       console.log("sending input to backendn for analysis");
       postData("http://localhost:8080/add", {"userResponse": userInput});
       updateUI(); // Update analysis of Form Results: Text entered, Polarity, and Subjectivity
