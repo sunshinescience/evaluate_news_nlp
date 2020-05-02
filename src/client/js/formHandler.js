@@ -4,23 +4,28 @@ function handleSubmit(event) {
     event.preventDefault();
     console.log("handleSubmit entered, checking input for url/no-url");
 
-   //postData("http://localhost:8080/add", {"hi": "from browser"});
-   const userInput = document.getElementById('name').value;
-   
-   // Check for valid URL (from: https://github.com/ogt/valid-url)
-   if (validUrl.isUri(userInput)){
-        console.log("is a url", userInput);
-        document.getElementById('noErrorMessage').innerHTML = "This is a valid URL";
-   }
-   // Conduct aylien API text analysis
-   else {
-        console.log("not a url", userInput);
-        document.getElementById('noErrorMessage').innerHTML = "";
-        console.log("sending input to backendn for analysis");
-        postData("http://localhost:8080/add", {"userResponse": userInput});
-        updateUI(); // Update analysis of Form Results: Text entered, Polarity, and Subjectivity
-   }
+    //postData("http://localhost:8080/add", {"hi": "from browser"});
+    const userInput = document.getElementById('name').value;
+    validURL(userInput);
+
     console.log("handleSubmit done");
+};
+
+function validURL(userInput) {
+  // Check for valid URL (from: https://github.com/ogt/valid-url)
+  if (validUrl.isUri(userInput)){
+    console.log("is a url", userInput);
+    const message = "This is a valid URL";
+    document.getElementById('noErrorMessage').innerHTML = message;
+  }
+  // Conduct aylien API text analysis
+  else {
+      console.log("not a url", userInput);
+      document.getElementById('noErrorMessage').innerHTML = "";
+      console.log("sending input to backendn for analysis");
+      postData("http://localhost:8080/add", {"userResponse": userInput});
+      updateUI(); // Update analysis of Form Results: Text entered, Polarity, and Subjectivity
+  }
 };
 
 const postData = async (url = '', data = {}) => { 
@@ -60,6 +65,7 @@ const updateUI = async () => {
   };
 
 export { handleSubmit,
-        updateUI
+        updateUI,
+        validURL
        } // export is what allows us to import the file within the index.js file
 
