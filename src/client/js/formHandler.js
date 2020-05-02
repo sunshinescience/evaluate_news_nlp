@@ -6,22 +6,22 @@ function handleSubmit(event) {
 
     //postData("http://localhost:8080/add", {"hi": "from browser"});
     const userInput = document.getElementById('name').value;
-    validURL(userInput);
+    
+    checkURL(userInput);
 
     console.log("handleSubmit done");
 };
 
-function validURL(userInput) {
+function checkURL(userInput) {
   // Check for valid URL (from: https://github.com/ogt/valid-url)
   if (validUrl.isUri(userInput)){
     console.log("is a url", userInput);
-    const message = "This is a valid URL";
-    document.getElementById('noErrorMessage').innerHTML = message;
+    document.getElementById('noErrorMessage').innerHTML = "This is a valid URL";
   }
   // Conduct aylien API text analysis
   else {
       console.log("not a url", userInput);
-      //document.getElementById('noErrorMessage').innerHTML = " ";
+      //document.getElementById('noErrorMessage').innerHTML = "Error: not a valid URL";
       console.log("sending input to backendn for analysis");
       postData("http://localhost:8080/add", {"userResponse": userInput});
       updateUI(); // Update analysis of Form Results: Text entered, Polarity, and Subjectivity
@@ -66,6 +66,6 @@ const updateUI = async () => {
 
 export { handleSubmit,
         updateUI,
-        validURL
+        checkURL
        } // export is what allows us to import the file within the index.js file
 
