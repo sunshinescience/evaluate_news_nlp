@@ -60,11 +60,6 @@ app.get('/test', function (req, res) {
     res.send({"sss": "dsdd"});
 });
 
-app.get('/allHendrik', function (req, res) {
-  const someData = ["Hendrik", 3, "Papa", 36];
-  res.send(someData);
-});
-
 // POST method routes - adds data to aylienData object
 app.post('/add', addInfo);
 
@@ -92,7 +87,5 @@ function addInfo (req, res) {
   
  console.log("/add (6): done\n")
 };
-
-
 
 exports.aylienData = aylienData;

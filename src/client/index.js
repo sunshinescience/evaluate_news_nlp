@@ -8,7 +8,6 @@ import './styles/resets.scss'
 
 export {
     handleSubmit,
-    updateUI,
-    updateURL
+    updateUI
 }
 

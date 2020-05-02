@@ -11,7 +11,6 @@ function handleSubmit(event) {
    if (validUrl.isUri(userInput)){
         console.log("is a url", userInput);
         document.getElementById('noErrorMessage').innerHTML = "This is a valid URL";
-        //updateURL(); // Form Results: Text entered, Polarity, and Subjectivity show up as empty on the page if a URL is input into the form
    }
    // Conduct aylien API text analysis
    else {
@@ -22,7 +21,6 @@ function handleSubmit(event) {
         updateUI(); // Update analysis of Form Results: Text entered, Polarity, and Subjectivity
    }
     console.log("handleSubmit done");
-    return userInput;
 };
 
 const postData = async (url = '', data = {}) => { 
@@ -38,16 +36,13 @@ const postData = async (url = '', data = {}) => {
     
     try {
         const newData = await response.json();
-        console.log(newData);
+        //console.log("newData is: ", newData);
         //await updateUI();
         return newData;
     } catch(error) {
         console.log('error', error);
     };
 };
-
-// test to add some data
-// postData("http://localhost:8080/add", {userResp: 'warm'});
 
 // Updating the UI of the app dynamically
 const updateUI = async () => {
@@ -64,33 +59,7 @@ const updateUI = async () => {
     return allData;
   };
 
-function updateURL() {
-    // If checking for a URL, then the form results, polarity, and subjectivity show as empty
-    document.getElementById('results').innerHTML = "";
-    document.getElementById('polarity').innerHTML = "";
-    document.getElementById('subjectivity').innerHTML = "";
-};
-
 export { handleSubmit,
-        updateUI,
-        updateURL } // export is what allows us to import the file within the index.js file
-
-
-/*
-const updateUI = async () => {
-    const request = await fetch('http://localhost:8080/allHendrik');
-    try{
-      const allData = await request.json();
-      console.log("allData: ", allData);
-      document.getElementById('results').innerHTML = allData;
-    }catch(error){
-      console.log("error", error);
-    }
-    return allData;
-  };
-
-updateUI();
-*/
-
-
+        updateUI
+       } // export is what allows us to import the file within the index.js file
 
