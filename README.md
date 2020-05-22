@@ -9,6 +9,9 @@ This is a frontend application that can interact with the aylien text analysis p
 Start the webpack dev server
 `npm run build-dev`
 
+Start the server
+`npm run start`
+
 ## Run in production mode
 Generate the dist files and start the server
 `npm run build-prod`
